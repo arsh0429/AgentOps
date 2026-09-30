@@ -1,0 +1,13 @@
+:root { color-scheme: light; font-family: ui-sans-serif, system-ui, sans-serif; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.border-b { border-bottom: 1px solid #e5e7eb; }
+.flex { display: flex; }
+.gap-1 { gap: 0.25rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+.font-bold { font-weight: 700; }
+.mr-4 { margin-right: 1rem; }
+.p-6 { padding: 1.5rem; }
+.items-center { align-items: center; }

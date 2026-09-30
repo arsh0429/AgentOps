@@ -1,0 +1,57 @@
+
+# Beads / Dolt files (added by bd init)
+.beads/
+.dolt/
+*.db
+.beads-credential-key
+
+# Agent / assistant tooling
+.claude/
+CLAUDE.md
+AGENTS.md
+
+# Brainstorming companion scratch files
+.superpowers/
+
+# Python
+.venv/
+.venv313/
+.uv-cache/
+__pycache__/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# TS / Node
+node_modules/
+packages/*/dist/
+packages/*/.turbo/
+*.tsbuildinfo
+
+# Prevent tsc from emitting JS alongside TS source files
+apps/agentops-research-web/src/**/*.js
+apps/agentops-research-web/*.js
+packages/agentops-console/src/**/*.js
+packages/agentops-console/*.js
+
+# Local SQLite databases
+*.sqlite
+*.sqlite-journal
+*.db-journal
+agentaid.db
+
+# Secrets
+.env
+.env.local
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local-only backup of the uncaptioned walkthrough (re-created by add_captions.py)
+docs/walkthrough-uncaptioned.mp4

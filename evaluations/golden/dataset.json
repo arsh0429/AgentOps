@@ -1,0 +1,126 @@
+{
+  "name": "arxiv-research-digest-v1",
+  "description": "Synthetic demo fixtures for the research digest agent: 10 interests and date windows with invented paper IDs and expected themes.",
+  "rows": [
+    {
+      "id": "row-001",
+      "input": {
+        "research_interest": "concept drift detection in streaming ML",
+        "date_from": "2024-01-01",
+        "date_to": "2024-06-30"
+      },
+      "expected": {
+        "expected_paper_ids": ["2401.00001"],
+        "expected_themes": ["adaptive windowing", "Hoeffding bound"]
+      }
+    },
+    {
+      "id": "row-002",
+      "input": {
+        "research_interest": "Page-Hinkley applied to LLM evaluation streams",
+        "date_from": "2024-01-01",
+        "date_to": "2024-12-31"
+      },
+      "expected": {
+        "expected_paper_ids": ["2402.00012"],
+        "expected_themes": ["change-point detection", "evaluation stream"]
+      }
+    },
+    {
+      "id": "row-003",
+      "input": {
+        "research_interest": "online machine learning pipeline libraries",
+        "date_from": "2024-03-01",
+        "date_to": "2024-06-30"
+      },
+      "expected": {
+        "expected_paper_ids": ["2403.01150"],
+        "expected_themes": ["incremental learning", "Hoeffding Adaptive Tree", "pipeline API"]
+      }
+    },
+    {
+      "id": "row-004",
+      "input": {
+        "research_interest": "multi-agent orchestration for autonomous research",
+        "date_from": "2024-04-01",
+        "date_to": "2024-06-30"
+      },
+      "expected": {
+        "expected_paper_ids": ["2404.02311"],
+        "expected_themes": ["hierarchical agents", "task decomposition", "planner worker"]
+      }
+    },
+    {
+      "id": "row-005",
+      "input": {
+        "research_interest": "automated evaluation of LLM-generated research summaries",
+        "date_from": "2024-05-01",
+        "date_to": "2024-07-31"
+      },
+      "expected": {
+        "expected_paper_ids": ["2405.03422"],
+        "expected_themes": ["CiteFaith", "BERTScore", "hallucination detection"]
+      }
+    },
+    {
+      "id": "row-006",
+      "input": {
+        "research_interest": "retrieval-augmented generation benchmarks",
+        "date_from": "2024-06-01",
+        "date_to": "2024-08-31"
+      },
+      "expected": {
+        "expected_paper_ids": ["2406.04500"],
+        "expected_themes": ["RAG", "retrieval precision", "query expansion", "reranking"]
+      }
+    },
+    {
+      "id": "row-007",
+      "input": {
+        "research_interest": "tool use and planning strategies in LLM agents",
+        "date_from": "2024-07-01",
+        "date_to": "2024-09-30"
+      },
+      "expected": {
+        "expected_paper_ids": ["2407.05600"],
+        "expected_themes": ["plan-then-execute", "self-reflection", "tool-use trajectories"]
+      }
+    },
+    {
+      "id": "row-008",
+      "input": {
+        "research_interest": "distribution shift in production machine learning systems",
+        "date_from": "2024-08-01",
+        "date_to": "2024-10-31"
+      },
+      "expected": {
+        "expected_paper_ids": ["2408.06711"],
+        "expected_themes": ["covariate shift", "temporal drift", "PSI monitoring", "retraining SLA"]
+      }
+    },
+    {
+      "id": "row-009",
+      "input": {
+        "research_interest": "online learning regret bounds under non-stationary rewards",
+        "date_from": "2024-09-01",
+        "date_to": "2024-12-31"
+      },
+      "expected": {
+        "expected_paper_ids": ["2409.07800"],
+        "expected_themes": ["AdaFTRL", "variation budget", "regret bound", "non-stationary"]
+      }
+    },
+    {
+      "id": "row-010",
+      "input": {
+        "research_interest": "class-incremental learning and catastrophic forgetting in streaming data",
+        "date_from": "2024-10-01",
+        "date_to": "2024-12-31"
+      },
+      "expected": {
+        "expected_paper_ids": ["2410.08900"],
+        "expected_themes": ["StreamAug", "replay exemplars", "conditional VAE", "catastrophic forgetting"]
+      }
+    }
+  ]
+}

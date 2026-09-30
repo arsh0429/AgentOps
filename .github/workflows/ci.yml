@@ -1,0 +1,49 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v10
+        with:
+          version: "0.11.16"
+      - name: Sync workspace
+        run: uv sync --all-packages --locked
+      - name: Lint (ruff)
+        run: uv run ruff check .
+      - name: Type-check (mypy)
+        run: |
+          uv run mypy \
+            packages/agentops-py/src \
+            packages/agentops-server/src \
+            apps/agentops-research-agent/src
+      - name: Tests
+        run: uv run pytest -m "not live" --maxfail=5
+
+  typescript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+      - name: Install
+        run: pnpm install --frozen-lockfile
+      - name: Type-check
+        run: pnpm -r typecheck
+      - name: Lint
+        run: pnpm -r lint
+      - name: Tests
+        run: pnpm -r test
+      - name: Build
+        run: pnpm -r build

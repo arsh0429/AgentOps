@@ -1,0 +1,152 @@
+[
+  {
+    "id": "2401.00001",
+    "title": "ADWIN-2: Adaptive Windowing for Concept Drift Detection in Data Streams",
+    "authors": ["Albert Bifet", "Ricard Gavalda"],
+    "abstract": "We present ADWIN-2, an improved adaptive sliding window algorithm for concept drift detection in non-stationary data streams. ADWIN-2 maintains a variable-length window whose size decreases whenever change is detected in the underlying distribution. We prove that ADWIN-2 has O(log W) per-element amortized time complexity while matching the statistical guarantees of its predecessor.",
+    "published": "2024-01-03",
+    "categories": ["cs.LG", "stat.ML"],
+    "body": "## Introduction\n\nConcept drift refers to changes in the statistical properties of a target variable over time. Detecting such changes promptly is critical for adaptive learning systems deployed in production environments.\n\n## Method\n\nADWIN-2 partitions the stream into exponentially-sized buckets. Each bucket stores sufficient statistics (mean and variance). When a statistical test detects a significant difference between the oldest and newest halves of the window, ADWIN-2 shrinks the window by dropping old buckets.\n\n## Experiments\n\nWe evaluate on 12 benchmark streams including electricity pricing, network intrusion, and weather prediction. ADWIN-2 detects 94% of injected drift events with a false positive rate below 2%, outperforming prior window-based methods.",
+    "figures": [
+      {
+        "caption": "ADWIN-2 window dynamics under sudden concept drift at t=5000.",
+        "filename": "fig_2401_00001_1.jpg"
+      }
+    ]
+  },
+  {
+    "id": "2402.00012",
+    "title": "Page-Hinkley Sequential Change Detection for Online Learning",
+    "authors": ["Marcos Barreto", "Diana Carneiro"],
+    "abstract": "We revisit the Page-Hinkley (PH) test as a lightweight drift detector for online learning pipelines. The PH test accumulates signed deviations from a reference mean and fires an alarm when the cumulative sum exceeds a threshold. We show that a properly tuned PH detector matches ADWIN on gradual drift while being an order of magnitude cheaper in memory.",
+    "published": "2024-02-07",
+    "categories": ["cs.LG", "stat.ML"],
+    "body": "## Background\n\nSequential change-point detection has a long history in statistics. The CUSUM and Page-Hinkley tests are classic tools for detecting shifts in the mean of a stream of observations.\n\n## Page-Hinkley Formulation\n\nLet x_t be the t-th observation. Define the cumulative sum M_T = sum_{t=1}^{T} (x_t - mu_ref - delta) where delta is a small tolerance. An alarm fires when M_T - min_{t<=T} M_t exceeds threshold lambda.\n\n## Comparison\n\nAgainst ADWIN on the SEA generator with gradual drift, PH achieves comparable detection delay (median 312 vs 308 samples) while using 6x less memory. For sudden drift, ADWIN retains a 15% advantage in detection speed.",
+    "figures": [
+      {
+        "caption": "Page-Hinkley cumulative sum trajectory under gradual drift.",
+        "filename": "fig_2402_00012_1.jpg"
+      }
+    ]
+  },
+  {
+    "id": "2403.01150",
+    "title": "River: A Machine Learning Library for Streaming Data",
+    "authors": ["Max Halford", "Geoffrey Bolmier", "Raphael Sourty"],
+    "abstract": "River is an open-source Python library for online machine learning. It unifies incremental learners, drift detectors, and feature extractors under a single pipeline API. We describe the design philosophy, benchmark performance, and community adoption metrics after two years of active development.",
+    "published": "2024-03-12",
+    "categories": ["cs.LG", "cs.MS"],
+    "body": "## Design Philosophy\n\nRiver follows a composable pipeline design where each step is an incremental transformer or estimator. Every model exposes `learn_one` and `predict_one` methods, enabling true one-sample-at-a-time learning without buffering.\n\n## Core Components\n\nThe library ships 200+ models including Hoeffding trees, online bagging, ADWIN-based drift detectors, and incremental feature scalers. A stats module provides online estimators for mean, variance, entropy, and quantiles.\n\n## Benchmarks\n\nOn the Covertype stream (581K samples), River's Hoeffding Adaptive Tree achieves 86.2% accuracy while processing 45K samples/second on a single CPU core. Memory footprint remains under 20MB throughout.",
+    "figures": [
+      {
+        "caption": "River pipeline throughput vs accuracy trade-off across benchmark datasets.",
+        "filename": "fig_2403_01150_1.jpg"
+      }
+    ]
+  },
+  {
+    "id": "2404.02311",
+    "title": "Multi-Agent Orchestration for Complex Research Tasks",
+    "authors": ["Priya Sharma", "Wei Chen", "Lucas Oliveira"],
+    "abstract": "We propose a hierarchical multi-agent framework for autonomous research tasks. A planner agent decomposes goals into sub-tasks and delegates them to specialized worker agents. Workers execute tool calls (web search, code execution, document retrieval) and report results back to the planner for synthesis. We evaluate on 50 open-ended research questions requiring multi-hop reasoning.",
+    "published": "2024-04-05",
+    "categories": ["cs.AI", "cs.MA"],
+    "body": "## Architecture\n\nThe framework consists of a planner LLM (GPT-4) that generates a task graph and a pool of worker agents. Each worker is specialized: a retrieval agent handles document search, a code agent runs Python snippets, and a synthesis agent merges partial answers.\n\n## Task Decomposition\n\nThe planner receives a natural language research goal and emits a JSON task plan with dependency edges. Workers claim tasks when their dependencies are satisfied, execute them, and post results to a shared message bus.\n\n## Evaluation\n\nOn 50 research tasks from the ResearchBench dataset, the orchestrated framework achieves 73% complete correct answers vs 41% for a single-agent baseline. Average completion time is 4.2 minutes per task.",
+    "figures": [
+      {
+        "caption": "Multi-agent task graph for a representative research question about climate policy.",
+        "filename": "fig_2404_02311_1.jpg"
+      }
+    ]
+  },
+  {
+    "id": "2405.03422",
+    "title": "Evaluating LLM-Generated Research Summaries: Metrics and Human Correlation",
+    "authors": ["Elena Marchetti", "James O'Brien"],
+    "abstract": "We study automated evaluation metrics for LLM-generated research summaries. BERTScore, ROUGE, and a novel citation-grounded faithfulness metric (CiteFaith) are compared against human expert judgments on 1,200 paper-summary pairs. CiteFaith correlates most strongly with expert scores (r=0.81) and penalises hallucinated citations.",
+    "published": "2024-05-18",
+    "categories": ["cs.CL", "cs.IR"],
+    "body": "## Motivation\n\nAs LLMs increasingly automate literature synthesis, reliable evaluation of summary quality becomes critical. Existing metrics like ROUGE measure surface overlap but fail to capture factual correctness.\n\n## CiteFaith Metric\n\nCiteFaith extracts all factual claims from the summary, maps each to a supporting citation, and verifies the claim against the cited paper using an entailment model. The final score is the fraction of verifiable claims that are supported.\n\n## Human Study\n\nTwenty domain experts rated 60 summaries each on a 5-point scale. CiteFaith achieves Pearson r=0.81 with expert scores, outperforming BERTScore (r=0.62) and ROUGE-L (r=0.44). Hallucinated citations account for 34% of low-scoring summaries.",
+    "figures": [
+      {
+        "caption": "Correlation of automated metrics with human expert judgments across summary quality levels.",
+        "filename": "fig_2405_03422_1.jpg"
+      }
+    ]
+  },
+  {
+    "id": "2406.04500",
+    "title": "RAG-Eval: A Benchmark for Retrieval-Augmented Generation Systems",
+    "authors": ["Tomoko Nakamura", "Andreas Klein", "Fatima Al-Hassan"],
+    "abstract": "RAG-Eval is a benchmark of 2,000 questions across 10 domains designed to stress-test retrieval-augmented generation pipelines. We measure retrieval precision, answer faithfulness, and end-to-end accuracy. Baseline experiments show that naive RAG systems achieve 58% end-to-end accuracy, while reranking and query expansion push this to 71%.",
+    "published": "2024-06-22",
+    "categories": ["cs.IR", "cs.CL"],
+    "body": "## Benchmark Design\n\nRAG-Eval questions require multi-hop reasoning over 2-5 documents. Each question has a gold document set and a distractors pool. We measure: Recall@10 (retrieval), faithfulness (claim-level NLI), and exact-match accuracy.\n\n## Retrieval Analysis\n\nDense retrieval (DPR) achieves Recall@10=0.74 while BM25 scores 0.68. A learned reranker boosts DPR to 0.83. However, higher retrieval recall does not always translate to better end-to-end accuracy due to context length constraints.\n\n## End-to-End Results\n\nGPT-4 with naive RAG achieves 58% EM accuracy. Adding query expansion (+5%) and learned reranking (+8%) yields 71%. Faithfulness drops sharply when retrieved context contradicts the question's implicit assumptions.",
+    "figures": [
+      {
+        "caption": "RAG-Eval accuracy decomposed by retrieval quality and reranking strategy.",
+        "filename": "fig_2406_04500_1.jpg"
+      }
+    ]
+  },
+  {
+    "id": "2407.05600",
+    "title": "Tool Use and Planning in Language Model Agents",
+    "authors": ["Samuel Park", "Nina Dubrovska"],
+    "abstract": "We analyze tool-use patterns in LLM agents across 500 task completions. Agents that plan before acting (plan-then-execute) complete 18% more tasks than reactive agents. Error recovery via self-reflection adds another 11%. We release a dataset of 5,000 annotated tool-use trajectories.",
+    "published": "2024-07-09",
+    "categories": ["cs.AI", "cs.CL"],
+    "body": "## Tool-Use Taxonomy\n\nWe categorise tool calls into: retrieval (search, lookup), computation (code execution, math), side-effect (file write, API post), and meta (plan, reflect). Retrieval comprises 52% of all calls in our corpus.\n\n## Planning Strategies\n\nPlan-then-execute agents emit a full task plan before any tool call. Reactive agents interleave planning and execution. On multi-step tasks (>5 tool calls), plan-then-execute completes 73% vs 55% for reactive.\n\n## Self-Reflection\n\nAfter tool failures, agents with a self-reflection step retry with corrected arguments 68% of the time, recovering from errors that would otherwise block task completion. Reflection adds ~400ms latency per call.",
+    "figures": [
+      {
+        "caption": "Tool call distribution across task types; retrieval dominates at 52%.",
+        "filename": "fig_2407_05600_1.jpg"
+      }
+    ]
+  },
+  {
+    "id": "2408.06711",
+    "title": "Distribution Shift Robustness in Deployed Machine Learning Systems",
+    "authors": ["Yuki Tanaka", "Carlos Mendez", "Sarah Ahmed"],
+    "abstract": "Deployed ML models degrade when real-world input distributions diverge from training data. We survey 47 production incidents attributed to distribution shift and classify root causes. Temporal drift accounts for 38% of incidents, covariate shift 29%, label shift 21%, and concept drift 12%. We propose a detection-and-retraining SLA framework.",
+    "published": "2024-08-14",
+    "categories": ["cs.LG", "stat.ML"],
+    "body": "## Survey Methodology\n\nWe analysed post-mortems from 12 organisations over a 3-year period. Each incident was classified by drift type, detection lag, and business impact. Incidents ranged from recommendation quality drops to safety-critical misclassifications.\n\n## Root Cause Analysis\n\nTemporal drift (seasonal patterns, trend changes) was most common. Covariate shift often arose from upstream data pipeline changes. Label shift correlated with product launches that changed user behaviour. Concept drift occurred primarily in adversarial domains (fraud, spam).\n\n## SLA Framework\n\nWe propose monitoring thresholds based on drift severity: green (PSI<0.1), yellow (0.1-0.2), red (>0.2). Red triggers automatic retraining. Organisations adopting the framework reduced mean incident duration by 61%.",
+    "figures": [
+      {
+        "caption": "Distribution of incident root causes across 47 production ML system failures.",
+        "filename": "fig_2408_06711_1.jpg"
+      }
+    ]
+  },
+  {
+    "id": "2409.07800",
+    "title": "Online Learning with Bounded Regret Under Non-Stationary Rewards",
+    "authors": ["Mikhail Korolev", "Anya Patel"],
+    "abstract": "We study online learning in environments where reward distributions shift over time. We derive a variation-budget regret bound of O(sqrt(T * V_T)) where V_T is the total variation budget. Our algorithm, AdaFTRL, adapts the learning rate based on estimated variation, achieving near-optimal regret without prior knowledge of V_T.",
+    "published": "2024-09-25",
+    "categories": ["cs.LG", "stat.ML", "math.OC"],
+    "body": "## Problem Setting\n\nWe consider an adversarial online learning setting where the loss function at each round is drawn from a non-stationary distribution. The learner must minimise cumulative regret relative to the best fixed action in hindsight.\n\n## AdaFTRL Algorithm\n\nAdaFTRL maintains a running estimate of the variation budget V_t using a sliding window variance estimator. The learning rate eta_t is set to sqrt(V_t / t), adapting to the current level of non-stationarity.\n\n## Theoretical Results\n\nTheorem 1: AdaFTRL achieves expected regret O(sqrt(T * V_T)) against an oblivious adversary. This matches the minimax lower bound up to logarithmic factors. Empirically, AdaFTRL outperforms fixed-learning-rate baselines on financial and climate datasets.",
+    "figures": [
+      {
+        "caption": "AdaFTRL cumulative regret vs fixed-rate baselines across non-stationary reward regimes.",
+        "filename": "fig_2409_07800_1.jpg"
+      }
+    ]
+  },
+  {
+    "id": "2410.08900",
+    "title": "Streaming Data Augmentation for Class-Incremental Learning",
+    "authors": ["Lena Fischer", "Diego Reyes", "Aisha Okonkwo"],
+    "abstract": "Class-incremental learning requires models to acquire new classes from a stream without forgetting prior ones. We propose StreamAug, a data augmentation strategy that synthesises replay exemplars on-the-fly using a lightweight generative model. StreamAug reduces catastrophic forgetting by 44% compared to rehearsal-free baselines on three streaming benchmarks.",
+    "published": "2024-10-03",
+    "categories": ["cs.LG", "cs.CV"],
+    "body": "## Catastrophic Forgetting in Streaming Settings\n\nNeural networks trained sequentially on class streams suffer from catastrophic forgetting: performance on old classes degrades as new classes are learned. Replay methods mitigate this by storing or generating examples of old classes.\n\n## StreamAug Method\n\nStreamAug trains a conditional VAE alongside the main classifier. When a new class arrives, the VAE generates synthetic replay exemplars for all previous classes. Generation is fast (<2ms per exemplar on CPU), enabling real-time augmentation.\n\n## Experiments\n\nOn Split-CIFAR100, Split-TinyImageNet, and CORe50, StreamAug achieves average accuracy 67.3%, 54.1%, and 61.8% respectively. Compared to rehearsal-free EWC (48.2%, 38.7%, 44.1%), StreamAug consistently improves final accuracy while keeping memory under 50MB.",
+    "figures": [
+      {
+        "caption": "StreamAug accuracy retention vs number of classes learned incrementally.",
+        "filename": "fig_2410_08900_1.jpg"
+      }
+    ]
+  }
+]

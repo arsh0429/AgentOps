@@ -1,0 +1,25 @@
+{
+  "name": "@agentops/sdk",
+  "version": "0.0.0",
+  "private": false,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run --maxWorkers=1 --minWorkers=1",
+    "lint": "eslint src",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/core": "^1.27.0",
+    "@opentelemetry/sdk-trace-base": "^1.27.0",
+    "@opentelemetry/sdk-trace-node": "^1.27.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "vitest": "^2.0.0"
+  }
+}
